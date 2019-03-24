@@ -12,4 +12,10 @@ Everything except deboostrap is run during the build phase, so currently kernel 
 
 The container must be launched in privileged mode, otherwise certain build operations will fail. The Dockerfile will build a desktop environment using the default settings, with overlayfs support. If you want a base image, then simply change the target to "base".
 
-The system image will be copied to the `data` folder where you can flash it as usual.
+The system image will be copied to the `data` folder where you can flash it as usual:
+
+```
+sudo rkdeveloptool db rk3399_loader_v1.12.112.bin
+sudo rkdeveloptool wl 0 data/system.img
+sudo rkdeveloptool rd
+```
