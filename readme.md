@@ -19,3 +19,16 @@ sudo rkdeveloptool db rk3399_loader_v1.12.112.bin
 sudo rkdeveloptool wl 0 data/system.img
 sudo rkdeveloptool rd
 ```
+
+## Notes
+
+The first thing you should do after flashing this image is disable wlan power management. If you don't do this, SSH over the network will be incredibly slow. The instructions are [here](https://askubuntu.com/a/860754): 
+
+Open `/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf` and change the contents to:
+
+```
+[connection]
+wifi.powersave = 2
+```
+
+then run `sudo iwconfig`.
