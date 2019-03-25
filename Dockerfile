@@ -29,6 +29,10 @@ RUN dpkg -i python-support_1.0.15_all.deb
 RUN cd rock960dev/rootfs && dpkg -i ubuntu-build-service/packages/*
 RUN cd rock960dev/rootfs && apt-get install -f
 
+# Overwrite the rootfs builder with some of our own stuff
+COPY mk-rootfs-extra.sh rock960dev/rootfs/mk-rootfs-extra.sh
+RUN chmod +x rock960dev/rootfs/mk-rootfs-extra.sh
+
 # Can't do this because we can't do privileged shit inside Docker..
 #RUN cd rock960dev/rootfs && RELEASE=stretch TARGET=base ARCH=arm64 ./mk-base-debian.sh && ./mk-rootfs.sh
 
