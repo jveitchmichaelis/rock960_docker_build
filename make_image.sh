@@ -1,5 +1,5 @@
-#!/usr/env/bin bash
+#!/usr/bin/env bash
 
-docker build -t ./ rock960
-mkdir data
-docker run --privileged -v `pwd`/data/:/data rock960 /build.sh
+docker build -t rock960 ./
+mkdir -p data
+docker run --privileged -v `pwd`/data/:/data rock960
