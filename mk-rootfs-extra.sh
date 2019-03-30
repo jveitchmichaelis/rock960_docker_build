@@ -19,16 +19,16 @@ sudo mount -o bind /dev $TARGET_ROOTFS_DIR/dev
 
 cat <<EOF | sudo chroot $TARGET_ROOTFS_DIR
 
-#--------------ssh keys------------
+#-------------- Generating ssh keys------------
 ssh-keygen -A
 
-#--------------Docker-------------
+#--------------Installing Docker-------------
 curl -sSL https://get.docker.com | sh
 usermod -aG docker linaro
 
 #--------------Disable WiFi power management-------------
 touch /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
-echo "[connection]\nwifi.powersave = 2\n" > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+echo -e "[connection]\nwifi.powersave = 2\n" > /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
 
 EOF
 

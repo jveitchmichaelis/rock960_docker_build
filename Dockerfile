@@ -10,15 +10,20 @@ RUN mkdir rock960dev
 RUN cd rock960dev && repo init -u https://github.com/96rocks/manifests -m rock960.xml
 RUN cd rock960dev && repo sync
 RUN cd rock960dev && repo start 96rocks/release-4.4-rock960 --all
-#RUN cd rock960dev/kernel && git checkout release-4.4-rock960
 
-RUN cp rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig rock960dev/kernel/.config
+# Modify the kernel config
+RUN sed -i "s/CONFIG_DEFAULT_HOSTNAME=\"localhost\"/CONFIG_DEFAULT_HOSTNAME=\"rock960\"/g" rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_OVERLAY_FS=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_BRIDGE_NETFILTER=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_NF_NAT=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_NETFILTER_XT_MATCH_CONNTRACK=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
-# Get overlay support for Docker
-RUN sed -i "s/CONFIG_OVERLAY_FS=m/CONFIG_OVERLAY_FS=y/g" rock960dev/kernel/.config
-RUN cd rock960dev/kernel && make oldconfig
+# Store kernel config
+RUN echo "CONFIG_IKCONFIG=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_IKCONFIG_PROC=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
 # Build the kernel
+COPY mk-kernel.sh rock960dev/build/mk-kernel.sh
 RUN cd rock960dev && build/mk-kernel.sh rock960ab
 RUN cd rock960dev && build/mk-uboot.sh rock960ab
 
