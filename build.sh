@@ -10,9 +10,6 @@ if [ $# -eq 0 ]; then
 
   cd /rock960dev/
 
-  # Copy modules to rootfs
-  
-
   ./build/mk-image.sh -c rk3399 -t system -r rootfs/linaro-rootfs.img
   cp out/* /data/
 

@@ -17,9 +17,9 @@ fi
 echo -e "\033[36m Change root.....................\033[0m"
 sudo mount -o bind /dev $TARGET_ROOTFS_DIR/dev
 
+cp /rock960dev/*.deb /data
 rm /rock960dev/*dbg*.deb
 cp /rock960dev/*.deb $TARGET_ROOTFS_DIR
-cp /rock960dev/*.deb /data
 
 cat <<EOF | sudo chroot $TARGET_ROOTFS_DIR
 
@@ -28,8 +28,9 @@ ssh-keygen -A
 
 apt-get -qq install avahi-daemon
 
-#-----
-sudo dpkg -i /linux_*.deb
+#----- Install linux kernel and modules, then remove
+dpkg -i *.deb
+rm *.deb
 
 #--------------Installing Docker-------------
 curl -sSL https://get.docker.com | sh
