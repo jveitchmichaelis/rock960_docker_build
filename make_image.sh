@@ -2,4 +2,4 @@
 
 docker build -t rock960 ./
 mkdir -p data
-docker run -it --rm --storage-opt size=25G --privileged -v `pwd`/data/:/data rock960
+docker run -it --rm --privileged -v `pwd`/data/:/data rock960

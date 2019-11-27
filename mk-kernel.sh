@@ -36,7 +36,6 @@ make ${DEFCONFIG}
 make -j8 deb-pkg
 make modules_prepare
 make modules
-make INSTALL_MOD_PATH=$(pwd)/../rootfs/modules modules_install
 cd ${LOCALPATH}
 
 KERNEL_VERSION=$(cat ${LOCALPATH}/kernel/include/config/kernel.release)

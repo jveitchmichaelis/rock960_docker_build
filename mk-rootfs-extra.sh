@@ -26,8 +26,6 @@ cat <<EOF | sudo chroot $TARGET_ROOTFS_DIR
 #-------------- Generating ssh keys------------
 ssh-keygen -A
 
-apt-get -qq install avahi-daemon
-
 #----- Install linux kernel and modules, then remove
 dpkg -i *.deb
 rm *.deb
