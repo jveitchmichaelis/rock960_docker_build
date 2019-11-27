@@ -29,12 +29,14 @@ fi
 echo -e "\e[36m Building kernel for ${BOARD} board! \e[0m"
 
 cd ${LOCALPATH}/kernel
-[ ! -e .config ] && echo -e "\e[36m Using ${DEFCONFIG} \e[0m" && make ${DEFCONFIG}
+[ ! -e .config ]
+echo -e "\e[36m Using ${DEFCONFIG} \e[0m"
+make ${DEFCONFIG}
 
-make -j8
+make -j8 deb-pkg
 make modules_prepare
 make modules
-make modules_install
+make INSTALL_MOD_PATH=$(pwd)/../rootfs/modules modules_install
 cd ${LOCALPATH}
 
 KERNEL_VERSION=$(cat ${LOCALPATH}/kernel/include/config/kernel.release)
