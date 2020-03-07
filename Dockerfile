@@ -95,6 +95,8 @@ COPY check_config.sh rock960dev/check_config.sh
 RUN chmod +x rock960dev/check_config.sh
 RUN rock960dev/check_config.sh rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
+COPY rk3399-rock960-ab.dts rock960dev/kernel/arch/arm64/boot/dts/rockchip/rk3399-rock960-ab.dts
+
 # Build the kernel
 RUN apt-get -qq install kmod dpkg-dev
 RUN cd rock960dev/kernel && touch .scmversion
