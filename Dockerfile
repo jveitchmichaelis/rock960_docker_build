@@ -95,7 +95,7 @@ COPY check_config.sh rock960dev/check_config.sh
 RUN chmod +x rock960dev/check_config.sh
 RUN rock960dev/check_config.sh rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
-COPY rk3399-rock960-ab.dts rock960dev/kernel/arch/arm64/boot/dts/rockchip/rk3399-rock960-ab.dts
+COPY rock960-model-ab-linux.dts rock960dev/kernel/arch/arm64/boot/dts/rockchip/rock960-model-ab-linux.dts
 
 # Build the kernel
 RUN apt-get -qq install kmod dpkg-dev
