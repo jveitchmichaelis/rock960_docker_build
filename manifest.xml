@@ -11,8 +11,8 @@
            remote="rockchip-linux"
            sync-j="4" />
 
-  <project path="kernel" remote="96rocks" name="kernel" revision="release-4.4-rock960"/>
-  <project path="u-boot" remote="96rocks" name="u-boot" revision="stable-4.4-rock960"/>
+  <project path="kernel" remote="rockchip-linux" name="kernel" revision="stable-4.4-rk3399-linux"/>
+  <project path="u-boot" remote="rockchip-linux" name="u-boot" revision="stable-4.4-rk3399-linux"/>
   <project path="rootfs" remote="rockchip-linux" name="rk-rootfs-build" />
   <project path="rkbin" remote="96rocks" name="rkbin" revision="master"/>
 
