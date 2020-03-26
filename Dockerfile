@@ -89,6 +89,12 @@ RUN echo  "CONFIG_NF_NAT=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_lin
 
 # Store kernel config
 RUN echo "CONFIG_IKCONFIG=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_LEDS_PCA9532=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+# Need newer Linux... 
+# RUN echo "CONFIG_BME680=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+# RUN echo "CONFIG_SPS30=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_USB_LED=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
+RUN echo "CONFIG_USB_LED_TRIG=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 RUN echo "CONFIG_IKCONFIG_PROC=y" >> rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
 COPY check_config.sh rock960dev/check_config.sh
