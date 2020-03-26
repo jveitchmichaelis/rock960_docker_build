@@ -9,6 +9,7 @@ if [ $# -eq 0 ]; then
   cd /rock960dev/kernel
 
   cd /rock960dev/rootfs
+  sed "s/seek=4000/seek=4200/g" -i ./mk-image.sh
   ./mk-image.sh
 
   cd /rock960dev/
@@ -16,7 +17,7 @@ if [ $# -eq 0 ]; then
   ./build/mk-image.sh -c rk3399 -t system -r rootfs/linaro-rootfs.img
   cp out/system.img /data/
 
-  /usr/bin/env bash
+  #/usr/bin/env bash
 fi
 
 $1
