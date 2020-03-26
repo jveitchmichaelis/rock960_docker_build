@@ -121,6 +121,9 @@ RUN cd rock960dev/rootfs && apt-get install -f
 COPY mk-rootfs-extra.sh rock960dev/rootfs/mk-rootfs-extra.sh
 RUN chmod +x rock960dev/rootfs/mk-rootfs-extra.sh
 
+COPY mk-rootfs-buster.sh rock960dev/rootfs/mk-rootfs-buster.sh
+RUN chmod +x rock960dev/rootfs/mk-rootfs-buster.sh
+
 # Can't do this because we can't do privileged shit inside Docker..
 #RUN cd rock960dev/rootfs && RELEASE=stretch TARGET=base ARCH=arm64 ./mk-base-debian.sh
 
