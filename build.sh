@@ -2,9 +2,9 @@
 
 if [ $# -eq 0 ]; then
   cd /rock960dev/rootfs
-  RELEASE=stretch TARGET=desktop ARCH=arm64 ./mk-base-debian.sh
-  RELEASE=stretch TARGET=desktop ARCH=arm64 ./mk-rootfs.sh
-  RELEASE=stretch TARGET=desktop ARCH=arm64 ./mk-rootfs-extra.sh
+  RELEASE=buster TARGET=desktop ARCH=arm64 ./mk-base-debian.sh
+  RELEASE=buster TARGET=desktop ARCH=arm64 ./mk-rootfs.sh
+  RELEASE=buster TARGET=desktop ARCH=arm64 ./mk-rootfs-extra.sh
 
   cd /rock960dev/kernel
 
