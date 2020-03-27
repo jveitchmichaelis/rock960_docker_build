@@ -7,7 +7,12 @@ RUN apt-get install  -qq bison flex make autoconf bc dosfstools xz-utils wget cc
 
 RUN mkdir rock960dev
 
-RUN cd rock960dev && repo init -u https://github.com/jveitchmichaelis/rock960_docker_build -m manifest.xml
+RUN git config --global user.email "USER@DOMAIN.COM" && git config --global user.name "USERNAME"
+RUN mkdir manifest && cd manifest && git init
+COPY manifest.xml manifest/default.xml
+RUN cd manifest && git add default.xml && git commit -m "local"
+
+RUN cd rock960dev && repo init -u ../manifest
 RUN cd rock960dev && repo sync
 
 #Modify the kernel config
