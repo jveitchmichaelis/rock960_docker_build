@@ -56,6 +56,11 @@ elif [ "$ARCH" == "arm64"  ]; then
 	sudo cp -rf overlay-debug/usr/local/share/adb/adbd-64 $TARGET_ROOTFS_DIR/usr/local/bin/adbd
 fi
 
+# rga
+sudo mkdir -p $TARGET_ROOTFS_DIR/usr/include/rga
+sudo cp packages/$ARCH/rga/include/*      $TARGET_ROOTFS_DIR/usr/include/rga/
+sudo cp packages/$ARCH/rga/lib/librga.so  $TARGET_ROOTFS_DIR/usr/lib/
+
 # glmark2
 sudo rm -rf $TARGET_ROOTFS_DIR/usr/local/share/glmark2
 sudo mkdir -p $TARGET_ROOTFS_DIR/usr/local/share/glmark2
@@ -126,11 +131,11 @@ apt-get install -f -y
 
 #---------------Video--------------
 echo -e "\033[36m Setup Video.................... \033[0m"
-apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-alsa \
-	gstreamer1.0-plugins-good  gstreamer1.0-plugins-bad alsa-utils
-
-dpkg -i  /packages/video/mpp/*.deb
-dpkg -i  /packages/video/gstreamer/*.deb
+apt-get install -y gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-alsa gstreamer1.0-plugins-base-apps
+dpkg -i  /packages/video/mpp/*
+dpkg -i  /packages/gst-rkmpp/*.deb
+dpkg -i  /packages/gst-base/*.deb
+apt-mark hold gstreamer1.0-x
 apt-get install -f -y
 
 #---------------Qt-Video--------------
