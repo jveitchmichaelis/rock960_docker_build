@@ -107,9 +107,8 @@ COPY check_config.sh rock960dev/check_config.sh
 RUN chmod +x rock960dev/check_config.sh
 RUN rock960dev/check_config.sh rock960dev/kernel/arch/arm64/configs/rockchip_linux_defconfig
 
-COPY rock960-model-ab-linux.dts rock960dev/kernel/arch/arm64/boot/dts/rockchip/rock960-model-ab-linux.dts
-
-# Build the kernel
+# Build the kernel, modify 96boards build to use the mainline dtb
+RUN sed -i "s/DTB=rock960-model-ab-linux.dtb"/"DTB=rk3399-rock960.dtb/g" rock960dev/build/board_configs.sh
 RUN apt-get -qq install kmod dpkg-dev
 RUN cd rock960dev/kernel && touch .scmversion
 COPY mk-kernel.sh rock960dev/build/mk-kernel.sh
