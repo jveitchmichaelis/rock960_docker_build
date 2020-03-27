@@ -7,12 +7,15 @@
   <remote  name="96rocks"
 	       fetch="https://github.com/96rocks"/>
 
+  <remote  name="torvalds"
+	       fetch="https://github.com/torvalds"/>
+
   <default revision="master"
            remote="rockchip-linux"
            sync-j="4" />
 
-  <project path="kernel" remote="rockchip-linux" name="kernel" revision="stable-4.4-rk3399-linux"/>
-  <project path="u-boot" remote="rockchip-linux" name="u-boot" revision="stable-4.4-rk3399-linux"/>
+  <project path="kernel" remote="torvalds" name="linux" revision="refs/tags/v5.5"/>
+  <project path="u-boot" remote="rockchip-linux" name="u-boot" revision="next-dev"/>
   <project path="rootfs" remote="rockchip-linux" name="rk-rootfs-build" />
   <project path="rkbin" remote="96rocks" name="rkbin" revision="master"/>
 
